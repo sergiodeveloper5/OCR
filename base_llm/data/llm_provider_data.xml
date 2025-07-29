@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <!-- Default Groq Provider -->
+        <record id="llm_provider_groq_default" model="llm.provider">
+            <field name="name">Groq</field>
+            <field name="provider_type">groq</field>
+            <field name="model_name">llama-3.1-70b-versatile</field>
+            <field name="endpoint">https://api.groq.com/openai/v1/chat/completions</field>
+            <field name="api_key">your_groq_api_key_here</field>
+            <field name="max_tokens">4000</field>
+            <field name="temperature">0.1</field>
+            <field name="active">False</field>
+            <field name="is_default">True</field>
+            <field name="sequence">10</field>
+        </record>
+    </data>
+</odoo>

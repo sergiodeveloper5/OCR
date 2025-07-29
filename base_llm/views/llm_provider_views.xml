@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- LLM Provider Views -->
+    <record id="view_llm_provider_tree" model="ir.ui.view">
+        <field name="name">llm.provider.tree</field>
+        <field name="model">llm.provider</field>
+        <field name="arch" type="xml">
+            <tree string="LLM Providers">
+                <field name="sequence" widget="handle"/>
+                <field name="name"/>
+                <field name="provider_type"/>
+                <field name="model_name"/>
+                <field name="active"/>
+                <field name="is_default"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_llm_provider_form" model="ir.ui.view">
+        <field name="name">llm.provider.form</field>
+        <field name="model">llm.provider</field>
+        <field name="arch" type="xml">
+            <form string="LLM Provider">
+                <header>
+                    <button name="test_connection" string="Test Connection" type="object" class="btn-primary"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="toggle_active" type="object" class="oe_stat_button" icon="fa-archive">
+                            <field name="active" widget="boolean_button" options='{"terminology": "archive"}'/>
+                        </button>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="provider_type"/>
+                            <field name="model_name"/>
+                            <field name="sequence"/>
+                        </group>
+                        <group>
+                            <field name="is_default"/>
+                            <field name="company_id" groups="base.group_multi_company"/>
+                        </group>
+                    </group>
+                    <group string="API Configuration">
+                        <group>
+                            <field name="api_key" password="True"/>
+                            <field name="endpoint"/>
+                        </group>
+                        <group>
+                            <field name="max_tokens"/>
+                            <field name="temperature"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Actions -->
+    <record id="action_llm_provider" model="ir.actions.act_window">
+        <field name="name">LLM Providers</field>
+        <field name="res_model">llm.provider</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first LLM Provider!
+            </p>
+            <p>
+                Configure LLM providers like Groq, OpenAI, or Anthropic to enable AI-powered features.
+            </p>
+        </field>
+    </record>
+
+    <!-- Menu Items -->
+    <menuitem id="menu_llm_root" name="LLM" sequence="100"/>
+    <menuitem id="menu_llm_config" name="Configuration" parent="menu_llm_root" sequence="100"/>
+    <menuitem id="menu_llm_provider" name="LLM Providers" parent="menu_llm_config" action="action_llm_provider" sequence="10"/>
+</odoo>
