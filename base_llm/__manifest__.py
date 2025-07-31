@@ -12,7 +12,7 @@
         - Anthropic
         - Custom providers
     """,
-    "author": "Your Company",
+    "author": "Sergio Vadillo",
     "website": "https://www.yourcompany.com",
     "depends": ["base", "mail"],
     "data": [
